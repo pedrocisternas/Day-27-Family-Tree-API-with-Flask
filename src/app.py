@@ -53,6 +53,14 @@ def delete_member(id):
     }
     return jsonify(response_body), 200
 
+@app.route('/descendants/<int:id>', methods=['GET'])
+def get_descendants(id):
+    descendant = jackson_family.get_descendants(id)
+    response_body = {
+        "descendant": descendant
+    }
+    return jsonify(response_body), 200
+
 # this only runs if `$ python src/app.py` is executed
 if __name__ == '__main__':
     PORT = int(os.environ.get('PORT', 3000))
